@@ -17,31 +17,39 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var pesoIdeal: UILabel!
     @IBOutlet weak var altura: UITextField!
     @IBOutlet weak var picker: UIPickerView!
+    @IBOutlet weak var resultado: UILabel!
+    
     
     @IBAction func calcular(_ sender: Any) {
         let alturaF:Float = (altura.text! as NSString).floatValue
         let sexoF:String = (pickerSelected! as String)
-        print(sexoF)
-        
+        calculo(alturaF, sexoF)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Connect data:
+        
+        
+        
         pickerData = ["Masculino", "Feminino"]
-
+        
         self.picker.delegate = self
         self.picker.dataSource = self
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
+    func calculo(_ altura:Float, _ sexo: String){
+        resultado.text = "Seu peso ideal é FUNFOU"
+    }
+    
+    
+    
+    
+    // PICKER VIEW
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 2
+        return pickerData.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
@@ -49,11 +57,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerSelected = pickerData[row]
-//        print(pickerData[row])
     }
     
 }
